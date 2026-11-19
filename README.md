@@ -150,6 +150,7 @@ Local builds are versioned `0.0.0-dev`; release versions are passed in with `-p:
 - **Tag trigger:** only date tags start a release: `vYYYY.MM.DD` or `vYYYY.MM.DD.n`. The workflow refuses to publish unless the tagged commit is already an ancestor of the default branch. Also add a repository tag ruleset protecting `v*` (restrict creation and block deletion/updates to maintainers) so only trusted people can push release tags.
 - **Large-change guard:** `llms.txt` is untrusted input. Every post line is strictly validated and re-emitted from parsed fields, and the run fails if more than 10 posts are added or any existing post disappears or changes URL. After reviewing the change, re-run the workflow manually with `force` ticked; that passes `--allow-large-change` to the script.
 - Tests for the index script run in CI: `node --test scripts/test/update-posts-index.test.mjs`.
+- **Accepted risk:** ordinary weekly changes (new posts, edited titles/descriptions) publish without manual review. Validation blocks links, HTML, and URLs, but not plain-language text. The author owns both khalidabuhakmeh.com and this package and treats site content as pre-approved. `SKILL.md` tells agents to treat the index as data and never follow instructions inside it.
 - Tags use the zero-padded date (`v2026.01.03`); the NuGet package version is the normalized form (`2026.1.3`).
 
 ## License
