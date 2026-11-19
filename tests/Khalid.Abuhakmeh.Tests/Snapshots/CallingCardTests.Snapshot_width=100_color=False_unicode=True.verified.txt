@@ -1,20 +1,20 @@
 ﻿╭─ Khalid Abuhakmeh ───────────────────────────────────────────────────────────────────────────────╮
 │                                                                                                  │
 │                                       Khalid Abuhakmeh                                           │
-│             .....::::.....            Senior Customer Success Engineer @ Duende Software         │
-│          ..::::........::::..         .NET · ASP.NET Core · C# · HTMX · IdentityServer           │
+│             .....::::.....            .NET developer · writer · lifelong learner                 │
+│          ..::::........::::..         .NET · ASP.NET Core · C# · HTMX · the web                  │
 │        ..:::.   ..      ..:::..                                                                  │
-│      ..:::.   :::-==-.-=.  .:::..     Over a decade of .NET and the web. Former .NET developer   │
-│     .:::..  =#@@@@@@@@@@@*  ..:::.    advocate at JetBrains. I keep coding.                      │
-│    .::::. .-#@@@@@@@@@@@@@+. .::::.                                                              │
-│    .::::...-#@@@@@@@@@@@@@=  .::::.   🌐 khalidabuhakmeh.com                                     │
-│    :::::.  :#***#%@@%#***@=  .:::::   🐙 github.com/khalidabuhakmeh                              │
-│    ::::..: ++==-=*%@%+-+*#% ::.::::   🐘 @khalidabuhakmeh@mastodon.social                        │
-│    .:::.+*:#%@@%@#%@@@%@@@@-@#.:::.   ▶  youtube.com/@khalidabuhakmeh                            │
-│    .:::.:#:#@@@@%%@@@%@@@@@-@-.:::.                                                              │
-│     .:::.=:=%@%#+-++-+#%@@+:+.:::.    Tip: your AI agent can search my blog. This package ships  │
-│      ..::. .:%.=-+**+-=.%.  .::..     a `local-khalid` agent skill.                              │
-│        ..:. .:.@@*++*@@.   .:..                                                                  │
+│      ..:::.   :::-==-.-=.  .:::..     I write about .NET and the web, share what I learn, and    │
+│     .:::..  =#@@@@@@@@@@@*  ..:::.    keep coding. Studied Computer Science & Philosophy.        │
+│    .::::. .-#@@@@@@@@@@@@@+. .::::.   Opinions are my own.                                       │
+│    .::::...-#@@@@@@@@@@@@@=  .::::.                                                              │
+│    :::::.  :#***#%@@%#***@=  .:::::   🌐 khalidabuhakmeh.com                                     │
+│    ::::..: ++==-=*%@%+-+*#% ::.::::   🐙 github.com/khalidabuhakmeh                              │
+│    .:::.+*:#%@@%@#%@@@%@@@@-@#.:::.   🐘 @khalidabuhakmeh@mastodon.social                        │
+│    .:::.:#:#@@@@%%@@@%@@@@@-@-.:::.   ▶  youtube.com/@khalidabuhakmeh                            │
+│     .:::.=:=%@%#+-++-+#%@@+:+.:::.                                                               │
+│      ..::. .:%.=-+**+-=.%.  .::..     Tip: your AI agent can search my blog. This package ships  │
+│        ..:. .:.@@*++*@@.   .:..       a `local-khalid` agent skill.                              │
 │          ...   :#@##@#-   ...                                                                    │
 │          .  +*-  .::...=%*  .                                                                    │
 │             =###+====*@@@*                                                                       │

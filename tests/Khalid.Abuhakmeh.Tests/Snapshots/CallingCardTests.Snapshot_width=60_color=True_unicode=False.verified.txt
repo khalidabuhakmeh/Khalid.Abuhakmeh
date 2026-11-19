@@ -7,11 +7,12 @@
 |   |_|\_\ |_| |_|  \__,_| |_| |_|  \__,_|                 |
 |                                                          |
 |  Khalid Abuhakmeh                                        |
-|  Senior Customer Success Engineer @ Duende Software      |
-|  .NET / ASP.NET Core / C# / HTMX / IdentityServer        |
+|  .NET developer / writer / lifelong learner              |
+|  .NET / ASP.NET Core / C# / HTMX / the web               |
 |                                                          |
-|  Over a decade of .NET and the web. Former .NET          |
-|  developer advocate at JetBrains. I keep coding.         |
+|  I write about .NET and the web, share what I learn,     |
+|  and keep coding. Studied Computer Science &             |
+|  Philosophy. Opinions are my own.                        |
 |                                                          |
 |  web: khalidabuhakmeh.com                                |
 |  gh: github.com/khalidabuhakmeh                          |

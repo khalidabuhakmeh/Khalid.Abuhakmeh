@@ -45,11 +45,11 @@ public static class Khalid
         var rows = new List<IRenderable>
         {
             new Markup(Bold(Skin, Markup.Escape("Khalid Abuhakmeh"))),
-            new Markup(C(Pink, Markup.Escape("Senior Customer Success Engineer @ Duende Software"))),
-            new Markup(C(Pink, Markup.Escape(string.Join(dot, ".NET", "ASP.NET Core", "C#", "HTMX", "IdentityServer")))),
+            new Markup(C(Pink, Markup.Escape(string.Join(dot, ".NET developer", "writer", "lifelong learner")))),
+            new Markup(C(Pink, Markup.Escape(string.Join(dot, ".NET", "ASP.NET Core", "C#", "HTMX", "the web")))),
             new Text(""),
             new Markup(C(Skin, Markup.Escape(
-                "Over a decade of .NET and the web. Former .NET developer advocate at JetBrains. I keep coding."))),
+                "I write about .NET and the web, share what I learn, and keep coding. Studied Computer Science & Philosophy. Opinions are my own."))),
             new Text(""),
             LinkRow("\U0001F310", "web:", Link(Website, "khalidabuhakmeh.com")),
             LinkRow("\U0001F419", "gh:", Link("https://github.com/khalidabuhakmeh", "github.com/khalidabuhakmeh")),

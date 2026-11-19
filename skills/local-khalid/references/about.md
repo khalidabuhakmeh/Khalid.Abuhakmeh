@@ -1,13 +1,13 @@
 # About Khalid Abuhakmeh
 
-Source: khalidabuhakmeh.com/about and the site's Person schema. Keep in sync with `src/site.config.ts` and `src/data/person.ts` in the blog repo.
+Source: khalidabuhakmeh.com/about. Only for "who is Khalid?" questions. Keep it about the person, with no employers or job titles.
 
 - **Name:** Khalid Abuhakmeh
-- **Role:** Senior Customer Success Engineer at Duende Software (helping teams succeed with Duende IdentityServer)
-- **Previously:** .NET developer advocate at JetBrains
-- **Background:** over a decade with Microsoft .NET, mostly ASP.NET and the web. Studied Computer Science & Philosophy at Millersville University.
-- **Known for:** .NET, ASP.NET Core, C#, HTMX, Duende IdentityServer, OAuth, OpenID Connect, JetBrains Rider
-- **Tagline:** "Senior Customer Success Engineer at Duende Software. Content Creator. Opinions are my own."
+- **In short:** .NET developer, writer, and lifelong learner
+- **What he does:** writes about .NET and the web, shares what he learns, and keeps coding. More than a decade of building with .NET, mostly ASP.NET and the web.
+- **Background:** studied Computer Science & Philosophy
+- **Writes about:** .NET, ASP.NET Core, C#, HTMX, Blazor, Entity Framework Core, NuGet, testing, OAuth and OpenID Connect, developer tooling
+- **Motto:** "Opinions are my own."
 
 ## Links
 
