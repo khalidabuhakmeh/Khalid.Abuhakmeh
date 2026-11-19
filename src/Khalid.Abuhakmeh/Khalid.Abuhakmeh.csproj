@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <PackageReference Include="Spectre.Console" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
