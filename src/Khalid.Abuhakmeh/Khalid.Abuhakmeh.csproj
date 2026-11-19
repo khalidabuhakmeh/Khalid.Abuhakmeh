@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+    <RootNamespace>Abuhakmeh</RootNamespace>
+    <AssemblyName>Khalid.Abuhakmeh</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+
+    <PackageId>Khalid.Abuhakmeh</PackageId>
+    <Description>A fun, branded package: Khalid.Hello() prints a Spectre.Console calling card, and the bundled local-khalid agent skill helps your AI agent find Khalid's blog posts.</Description>
+    <PackageTags>khalid;spectre-console;agent-skills;dotnet</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://khalidabuhakmeh.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/khalidabuhakmeh/Khalid.Abuhakmeh</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+    <None Include="../../assets/icon.png" Pack="true" PackagePath="/" />
+    <!-- Agent skills ship at the package root: skills/<name>/SKILL.md -->
+    <None Include="../../skills/**/*" Pack="true" PackagePath="skills/%(RecursiveDir)%(Filename)%(Extension)" Link="skills/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

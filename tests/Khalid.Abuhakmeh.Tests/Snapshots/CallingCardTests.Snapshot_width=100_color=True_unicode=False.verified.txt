@@ -1,0 +1,22 @@
+﻿+- Khalid Abuhakmeh -------------------------------------------------------------------------------+
+|                                                                                                  |
+|                                       Khalid Abuhakmeh                                           |
+|             .....::::.....            Senior Customer Success Engineer @ Duende Software         |
+|          ..::::........::::..         .NET / ASP.NET Core / C# / HTMX / IdentityServer           |
+|        ..:::.   ..      ..:::..                                                                  |
+|      ..:::.   :::-==-.-=.  .:::..     Over a decade of .NET and the web. Former .NET developer   |
+|     .:::..  =#@@@@@@@@@@@*  ..:::.    advocate at JetBrains. I keep coding.                      |
+|    .::::. .-#@@@@@@@@@@@@@+. .::::.                                                              |
+|    .::::...-#@@@@@@@@@@@@@=  .::::.   web: khalidabuhakmeh.com                                   |
+|    :::::.  :#***#%@@%#***@=  .:::::   gh: github.com/khalidabuhakmeh                             |
+|    ::::..: ++==-=*%@%+-+*#% ::.::::   mastodon: @khalidabuhakmeh@mastodon.social                 |
+|    .:::.+*:#%@@%@#%@@@%@@@@-@#.:::.   yt: youtube.com/@khalidabuhakmeh                           |
+|    .:::.:#:#@@@@%%@@@%@@@@@-@-.:::.                                                              |
+|     .:::.=:=%@%#+-++-+#%@@+:+.:::.    Tip: your AI agent can search my blog. This package ships  |
+|      ..::. .:%.=-+**+-=.%.  .::..     a `local-khalid` agent skill.                              |
+|        ..:. .:.@@*++*@@.   .:..                                                                  |
+|          ...   :#@##@#-   ...                                                                    |
+|          .  +*-  .::...=%*  .                                                                    |
+|             =###+====*@@@*                                                                       |
+|                                                                                                  |
++--------------------------------------------------------------------------------------------------+

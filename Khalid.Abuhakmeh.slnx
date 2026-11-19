@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Khalid.Abuhakmeh/Khalid.Abuhakmeh.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Khalid.Abuhakmeh.Tests/Khalid.Abuhakmeh.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/AvatarGen/AvatarGen.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/Hello/Hello.csproj" />
+  </Folder>
+</Solution>

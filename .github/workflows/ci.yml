@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - run: dotnet restore
+      - run: dotnet build -c Release --no-restore
+      - run: dotnet test -c Release --no-build
+      - run: dotnet pack src/Khalid.Abuhakmeh -c Release --no-build -o artifacts
+      - name: Validate package contents
+        shell: bash
+        run: |
+          pkg=$(ls artifacts/*.nupkg | head -n1)
+          listing=$(unzip -l "$pkg")
+          echo "$listing"
+          for expected in skills/local-khalid/SKILL.md skills/local-khalid/references/posts.md skills/local-khalid/references/about.md lib/netstandard2.0/Khalid.Abuhakmeh.dll lib/net8.0/Khalid.Abuhakmeh.dll README.md icon.png; do
+            grep -q " $expected\$" <<<"$listing" || { echo "Missing $expected in $pkg"; exit 1; }
+          done
+      - uses: actions/upload-artifact@v7
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          name: nupkg
+          path: artifacts/*nupkg

@@ -1,0 +1,24 @@
+﻿╭─ Khalid Abuhakmeh ───────────────────────────────────────╮
+│                                                          │
+│    _  __  _               _   _       _                  │
+│   | |/ / | |__     __ _  | | (_)   __| |                 │
+│   | ' /  | '_ \   / _` | | | | |  / _` |                 │
+│   | . \  | | | | | (_| | | | | | | (_| |                 │
+│   |_|\_\ |_| |_|  \__,_| |_| |_|  \__,_|                 │
+│                                                          │
+│  Khalid Abuhakmeh                                        │
+│  Senior Customer Success Engineer @ Duende Software      │
+│  .NET · ASP.NET Core · C# · HTMX · IdentityServer        │
+│                                                          │
+│  Over a decade of .NET and the web. Former .NET          │
+│  developer advocate at JetBrains. I keep coding.         │
+│                                                          │
+│  🌐 khalidabuhakmeh.com                                  │
+│  🐙 github.com/khalidabuhakmeh                           │
+│  🐘 @khalidabuhakmeh@mastodon.social                     │
+│  ▶  youtube.com/@khalidabuhakmeh                         │
+│                                                          │
+│  Tip: your AI agent can search my blog. This package     │
+│  ships a `local-khalid` agent skill.                     │
+│                                                          │
+╰──────────────────────────────────────────────────────────╯
