@@ -4,6 +4,11 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    ignore:
+      # ImageSharp 4.x requires a commercial Six Labors license for Release builds. It is only used by the
+      # dev-only tools/AvatarGen (never shipped), so stay on 3.x.
+      - dependency-name: "SixLabors.ImageSharp"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:

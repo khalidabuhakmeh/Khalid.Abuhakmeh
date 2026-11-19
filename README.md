@@ -147,6 +147,9 @@ Local builds are versioned `0.0.0-dev`; release versions are passed in with `-p:
 
 - **NuGet trusted publishing:** on nuget.org add a trusted publishing policy for this repository with workflow file `release.yml`, and set the repository variable `NUGET_USER` to your nuget.org profile name. (Without OIDC, replace the `NuGet/login` step with a `NUGET_API_KEY` secret.)
 - **Branch protection:** the scheduled run pushes a "Refresh post index" commit to `main` as `github-actions[bot]`. If `main` is protected, allow that bot to bypass the rules, or the push will fail.
+- **Tag trigger:** only date tags start a release: `vYYYY.MM.DD` or `vYYYY.MM.DD.n`. The workflow refuses to publish unless the tagged commit is already an ancestor of the default branch. Also add a repository tag ruleset protecting `v*` (restrict creation and block deletion/updates to maintainers) so only trusted people can push release tags.
+- **Large-change guard:** `llms.txt` is untrusted input. Every post line is strictly validated and re-emitted from parsed fields, and the run fails if more than 10 posts are added or any existing post disappears or changes URL. After reviewing the change, re-run the workflow manually with `force` ticked; that passes `--allow-large-change` to the script.
+- Tests for the index script run in CI: `node --test scripts/test/update-posts-index.test.mjs`.
 - Tags use the zero-padded date (`v2026.01.03`); the NuGet package version is the normalized form (`2026.1.3`).
 
 ## License

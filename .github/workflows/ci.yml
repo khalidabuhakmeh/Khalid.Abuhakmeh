@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
+      - name: Test the post index script
+        run: node --test scripts/test/update-posts-index.test.mjs
       - name: Validate bundled post index format (offline)
         run: node scripts/update-posts-index.mjs --validate
       - name: Check llms.txt is still parseable (informational, never fails CI)
