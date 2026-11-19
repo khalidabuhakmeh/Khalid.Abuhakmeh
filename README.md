@@ -13,6 +13,8 @@ dotnet add package Khalid.Abuhakmeh
 
 Targets `netstandard2.0` and `net8.0`. The only dependency is Spectre.Console.
 
+Versions are dates, not SemVer: `2026.11.19` means a package built on 19 November 2026 (UTC), and a newer date is a newer package. A second release on the same day gets a fourth segment (`2026.11.19.1`). The public API is tiny and stable; what changes between releases is the bundled post index.
+
 ## Usage
 
 ```csharp
@@ -111,13 +113,15 @@ Review any skill before you install it. Skills are prompts, and prompts are an a
 
 ## Refreshing the post index
 
-The index in `skills/local-khalid/references/posts.md` is generated from the blog's `content/posts/*.md` frontmatter. Drafts, `noindex`, and future-dated posts are skipped. Regenerate it before each release:
+The index in `skills/local-khalid/references/posts.md` is built from the live [llms.txt](https://khalidabuhakmeh.com/llms.txt) on khalidabuhakmeh.com, which already lists only published posts. A GitHub Actions workflow checks it every Monday (13:00 UTC). If posts changed, it commits the refreshed index, tags a date version, and publishes a new package; if nothing changed, it does nothing.
+
+To refresh it by hand (Node 20+, no dependencies):
 
 ```bash
-node scripts/build-posts-reference.mjs --blog /path/to/blog
+node scripts/update-posts-index.mjs
 ```
 
-Options: `--blog <path>` (default: current directory), `--date YYYY-MM-DD`, `--out <file>`.
+The file is only rewritten when the list of posts changes, so the `Generated` date in its header is the date of the last real change. The script fails if the fetch fails or fewer than 100 posts parse, so a broken index never ships. `--validate` checks the committed file offline.
 
 ## Building
 
@@ -135,7 +139,15 @@ The ASCII avatar is generated from `assets/avatar-neutral.png` by `tools/AvatarG
 dotnet run --project tools/AvatarGen
 ```
 
-Releases are published by pushing a `v*` tag; see `.github/workflows/release.yml` (NuGet trusted publishing, or a `NUGET_API_KEY` secret).
+Local builds are versioned `0.0.0-dev`; release versions are passed in with `-p:Version=...`.
+
+### Releases (maintainers)
+
+`.github/workflows/release.yml` is the only publishing workflow. It runs weekly, on manual dispatch (tick `force` to release without post changes), or when a `v*` tag is pushed (version taken from the tag, for example `v2026.11.19`). Setup it needs:
+
+- **NuGet trusted publishing:** on nuget.org add a trusted publishing policy for this repository with workflow file `release.yml`, and set the repository variable `NUGET_USER` to your nuget.org profile name. (Without OIDC, replace the `NuGet/login` step with a `NUGET_API_KEY` secret.)
+- **Branch protection:** the scheduled run pushes a "Refresh post index" commit to `main` as `github-actions[bot]`. If `main` is protected, allow that bot to bypass the rules, or the push will fail.
+- Tags use the zero-padded date (`v2026.01.03`); the NuGet package version is the normalized form (`2026.1.3`).
 
 ## License
 

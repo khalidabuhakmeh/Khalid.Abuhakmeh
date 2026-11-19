@@ -1,5 +1,7 @@
 <Project>
   <PropertyGroup>
+    <!-- Release versions are UTC dates (yyyy.M.d[.n]) passed with -p:Version=...; local builds are 0.0.0-dev. -->
+    <Version Condition="'$(Version)' == ''">0.0.0-dev</Version>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>

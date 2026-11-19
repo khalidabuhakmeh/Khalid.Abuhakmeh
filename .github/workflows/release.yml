@@ -1,46 +1,142 @@
 name: Release
 
+# The ONLY publishing workflow. NuGet trusted publishing policies are bound to this exact file name
+# (release.yml), so everything (index refresh, version, commit, tag, pack, push, GitHub release)
+# happens in this one workflow instead of reusable/called workflows (which change the OIDC claims).
+#
+# Triggers
+#   schedule          weekly. The blog publishes on Tuesdays and Fridays; Monday 13:00 UTC picks up a full
+#                     week of posts before the week starts. Skips itself when no posts changed.
+#   workflow_dispatch manual run; tick "force" to release even if the post index did not change.
+#   push tag v*       manual release of a hand-made tag (e.g. v2026.11.19). Version comes from the tag,
+#                     the index is NOT refreshed and nothing is committed or tagged.
 on:
+  schedule:
+    - cron: '0 13 * * 1'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Release even if no posts changed
+        type: boolean
+        default: false
   push:
     tags: ['v*']
 
 permissions:
-  contents: read
+  contents: write   # push the index commit + tag, create the GitHub release
+  id-token: write   # NuGet trusted publishing (OIDC)
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write   # create the GitHub release
-      id-token: write   # NuGet trusted publishing (OIDC)
+    env:
+      IS_TAG: ${{ startsWith(github.ref, 'refs/tags/v') }}
+      FORCE: ${{ inputs.force == true }}
     steps:
       - uses: actions/checkout@v7
         with:
-          fetch-depth: 0
+          fetch-depth: 0   # tags are needed to pick the next version
+          ref: ${{ github.event_name == 'push' && github.ref || github.event.repository.default_branch }}
+
       - uses: actions/setup-dotnet@v6
         with:
           global-json-file: global.json
-      - name: Version from tag
-        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
-      - run: dotnet restore
-      - run: dotnet build -c Release --no-restore -p:Version=${VERSION}
-      - run: dotnet test -c Release --no-build
-      - run: dotnet pack src/Khalid.Abuhakmeh -c Release --no-build -p:Version=${VERSION} -o artifacts
-      - name: Validate skills are in the package
-        run: unzip -l artifacts/Khalid.Abuhakmeh.${VERSION}.nupkg | grep -q " skills/local-khalid/SKILL.md$"
 
-      # Trusted publishing: configure the policy on nuget.org (Trusted Publishing),
-      # set repo variable NUGET_USER to your nuget.org profile name.
-      # Fallback: skip this step and pass --api-key ${{ secrets.NUGET_API_KEY }} below.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # --- Gate: refresh the index from https://khalidabuhakmeh.com/llms.txt and decide whether to release ---
+      - name: Refresh post index
+        id: index
+        if: env.IS_TAG != 'true'
+        run: node scripts/update-posts-index.mjs --notes-out "$RUNNER_TEMP/notes.md"
+
+      - name: Decide
+        id: gate
+        run: |
+          if [ "$IS_TAG" = "true" ] || [ "${{ steps.index.outputs.changed }}" = "true" ] || [ "$FORCE" = "true" ]; then
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "release=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No new posts, skipping release."
+          fi
+
+      - name: Compute version
+        id: version
+        if: steps.gate.outputs.release == 'true'
+        run: |
+          if [ "$IS_TAG" = "true" ]; then
+            node scripts/compute-version.mjs --from-tag "$GITHUB_REF_NAME"
+          else
+            node scripts/compute-version.mjs
+          fi
+
+      # --- Build, test, pack ---
+      - name: Build
+        if: steps.gate.outputs.release == 'true'
+        run: dotnet build -c Release -p:Version=${{ steps.version.outputs.version }}
+
+      - name: Test
+        if: steps.gate.outputs.release == 'true'
+        run: dotnet test -c Release --no-build -p:Version=${{ steps.version.outputs.version }}
+
+      - name: Pack
+        if: steps.gate.outputs.release == 'true'
+        run: dotnet pack src/Khalid.Abuhakmeh -c Release --no-build -p:Version=${{ steps.version.outputs.version }} -o artifacts
+
+      - name: Validate package contents
+        if: steps.gate.outputs.release == 'true'
+        run: |
+          pkg="artifacts/Khalid.Abuhakmeh.${{ steps.version.outputs.version }}.nupkg"
+          listing=$(unzip -l "$pkg")
+          for expected in skills/local-khalid/SKILL.md skills/local-khalid/references/posts.md skills/local-khalid/references/about.md lib/netstandard2.0/Khalid.Abuhakmeh.dll lib/net8.0/Khalid.Abuhakmeh.dll README.md icon.png; do
+            grep -q " $expected\$" <<<"$listing" || { echo "::error::Missing $expected in $pkg"; exit 1; }
+          done
+          echo "$listing"
+
+      # --- Commit the refreshed index and tag it (scheduled/manual runs only). Done after tests pass so a
+      #     broken build never leaves a stray tag. Tags pushed with GITHUB_TOKEN do not start other workflows.
+      - name: Commit index and tag
+        if: steps.gate.outputs.release == 'true' && env.IS_TAG != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add skills/local-khalid/references/posts.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh post index ($(date -u +%F))"
+            git push origin "HEAD:${{ github.event.repository.default_branch }}"
+          fi
+          git tag "${{ steps.version.outputs.tag }}"
+          git push origin "${{ steps.version.outputs.tag }}"
+
+      # --- Publish ---
+      # Trusted publishing: add a policy on nuget.org for this repo + workflow file release.yml and set the
+      # repository variable NUGET_USER to your nuget.org profile name.
+      # Fallback without OIDC: drop this step and use --api-key "${{ secrets.NUGET_API_KEY }}" below.
       - name: NuGet login (OIDC)
         id: login
+        if: steps.gate.outputs.release == 'true'
         uses: NuGet/login@v1
         with:
           user: ${{ vars.NUGET_USER }}
+
       - name: Push to nuget.org
+        if: steps.gate.outputs.release == 'true'
         run: dotnet nuget push "artifacts/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --skip-duplicate
 
-      - uses: softprops/action-gh-release@v3
-        with:
-          generate_release_notes: true
-          files: artifacts/*nupkg
+      - name: GitHub release
+        if: steps.gate.outputs.release == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ steps.version.outputs.tag }}"
+          if [ -s "$RUNNER_TEMP/notes.md" ]; then
+            gh release create "$tag" artifacts/*.nupkg artifacts/*.snupkg --title "$tag" --notes-file "$RUNNER_TEMP/notes.md"
+          else
+            gh release create "$tag" artifacts/*.nupkg artifacts/*.snupkg --title "$tag" --generate-notes
+          fi

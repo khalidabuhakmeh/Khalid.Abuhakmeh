@@ -23,6 +23,15 @@ jobs:
       - uses: actions/setup-dotnet@v6
         with:
           global-json-file: global.json
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Validate bundled post index format (offline)
+        run: node scripts/update-posts-index.mjs --validate
+      - name: Check llms.txt is still parseable (informational, never fails CI)
+        continue-on-error: true
+        run: node scripts/update-posts-index.mjs --out "$RUNNER_TEMP/posts-live.md"
+        shell: bash
       - run: dotnet restore
       - run: dotnet build -c Release --no-restore
       - run: dotnet test -c Release --no-build
