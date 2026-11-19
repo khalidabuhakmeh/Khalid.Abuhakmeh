@@ -70,6 +70,47 @@ public class CallingCardTests
         Assert.Contains("139;0;0", output);
     }
 
+    private const string BannerRow1 = "╦╔═┬ ┬┌─┐┬  ┬┌┬┐  ╔═╗┌┐ ┬ ┬┬ ┬┌─┐┬┌─┌┬┐┌─┐┬ ┬";
+    private const string BannerRow2 = "╠╩╗├─┤├─┤│  │ ││  ╠═╣├┴┐│ │├─┤├─┤├┴┐│││├┤ ├─┤";
+    private const string BannerRow3 = "╩ ╩┴ ┴┴ ┴┴─┘┴─┴┘  ╩ ╩└─┘└─┘┴ ┴┴ ┴┴ ┴┴ ┴└─┘┴ ┴";
+
+    [Theory]
+    [InlineData(100, true)]
+    [InlineData(100, false)]
+    [InlineData(60, true)]   // compact layout still has room for the banner
+    public void Banner_is_shown_when_unicode_and_width_allow(int width, bool color)
+    {
+        var output = Render(width, color, true).Output;
+        Assert.Contains(BannerRow1, output);
+        Assert.Contains(BannerRow2, output);
+        Assert.Contains(BannerRow3, output);
+    }
+
+    [Theory]
+    [InlineData(100, false)] // no unicode: plain name
+    [InlineData(80, true)]   // avatar layout leaves a 35 column right column: too narrow for the banner
+    [InlineData(40, true)]   // compact, but narrower than the banner
+    public void Plain_name_when_banner_does_not_fit_or_no_unicode(int width, bool unicode)
+    {
+        var output = Render(width, true, unicode).Output;
+        Assert.DoesNotContain("╦╔═", output);
+        Assert.Contains("Khalid Abuhakmeh", output);
+    }
+
+    [Fact]
+    public void Banner_K_and_A_use_crimson_and_the_rest_uses_skin()
+    {
+        var output = Render(100, true, true, ansi: true).Output;
+        // K (3 cols) and A (3 cols) in crimson 139;0;0, the letters between in skin 251;234;234
+        Assert.Contains("139;0;0;48;2;10;10;10m╦╔═", output);
+        Assert.Contains("139;0;0;48;2;10;10;10m╔═╗", output);
+        Assert.Contains("251;234;234;48;2;10;10;10m┬ ┬┌─┐┬  ┬┌┬┐  ", output);
+    }
+
+    [Fact]
+    public void Header_is_the_website()
+        => Assert.Contains("khalidabuhakmeh.com ─", Render(100, false, true).Output);
+
     [Fact]
     public void Hello_requires_console()
         => Assert.Throws<ArgumentNullException>(() => Khalid.Hello(null!));

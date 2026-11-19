@@ -47,28 +47,30 @@ The card switches to a compact layout (no avatar) on consoles narrower than 80 c
 
 ### What it looks like
 
+![Khalid.Hello() calling card](https://raw.githubusercontent.com/khalidabuhakmeh/Khalid.Abuhakmeh/main/docs/hello.png)
+
 Monochrome output at 100 columns (the real thing is crimson, white, and pink on black):
 
 ```text
-╭─ Khalid Abuhakmeh ───────────────────────────────────────────────────────────────────────────────╮
+╭─ khalidabuhakmeh.com ────────────────────────────────────────────────────────────────────────────╮
 │                                                                                                  │
-│                                       Khalid Abuhakmeh                                           │
-│             .....::::.....            .NET developer · writer · lifelong learner                 │
-│          ..::::........::::..         .NET · ASP.NET Core · C# · HTMX · the web                  │
-│        ..:::.   ..      ..:::..                                                                  │
-│      ..:::.   :::-==-.-=.  .:::..     I write about .NET and the web, share what I learn, and    │
-│     .:::..  =#@@@@@@@@@@@*  ..:::.    keep coding. Studied Computer Science & Philosophy.        │
-│    .::::. .-#@@@@@@@@@@@@@+. .::::.   Opinions are my own.                                       │
-│    .::::...-#@@@@@@@@@@@@@=  .::::.                                                              │
-│    :::::.  :#***#%@@%#***@=  .:::::   🌐 khalidabuhakmeh.com                                     │
-│    ::::..: ++==-=*%@%+-+*#% ::.::::   🐙 github.com/khalidabuhakmeh                              │
-│    .:::.+*:#%@@%@#%@@@%@@@@-@#.:::.   🐘 @khalidabuhakmeh@mastodon.social                        │
-│    .:::.:#:#@@@@%%@@@%@@@@@-@-.:::.   ▶  youtube.com/@khalidabuhakmeh                            │
-│     .:::.=:=%@%#+-++-+#%@@+:+.:::.                                                               │
-│      ..::. .:%.=-+**+-=.%.  .::..     Tip: your AI agent can search my blog. This package ships  │
-│        ..:. .:.@@*++*@@.   .:..       a `local-khalid` agent skill.                              │
-│          ...   :#@##@#-   ...                                                                    │
-│          .  +*-  .::...=%*  .                                                                    │
+│                                       ╦╔═┬ ┬┌─┐┬  ┬┌┬┐  ╔═╗┌┐ ┬ ┬┬ ┬┌─┐┬┌─┌┬┐┌─┐┬ ┬              │
+│             .....::::.....            ╠╩╗├─┤├─┤│  │ ││  ╠═╣├┴┐│ │├─┤├─┤├┴┐│││├┤ ├─┤              │
+│          ..::::........::::..         ╩ ╩┴ ┴┴ ┴┴─┘┴─┴┘  ╩ ╩└─┘└─┘┴ ┴┴ ┴┴ ┴┴ ┴└─┘┴ ┴              │
+│        ..:::.   ..      ..:::..       .NET developer · writer · lifelong learner                 │
+│      ..:::.   :::-==-.-=.  .:::..     .NET · ASP.NET Core · C# · HTMX · the web                  │
+│     .:::..  =#@@@@@@@@@@@*  ..:::.                                                               │
+│    .::::. .-#@@@@@@@@@@@@@+. .::::.   I write about .NET and the web, share what I learn, and    │
+│    .::::...-#@@@@@@@@@@@@@=  .::::.   keep coding. Studied Computer Science & Philosophy.        │
+│    :::::.  :#***#%@@%#***@=  .:::::   Opinions are my own.                                       │
+│    ::::..: ++==-=*%@%+-+*#% ::.::::                                                              │
+│    .:::.+*:#%@@%@#%@@@%@@@@-@#.:::.   🌐 khalidabuhakmeh.com                                     │
+│    .:::.:#:#@@@@%%@@@%@@@@@-@-.:::.   🐙 github.com/khalidabuhakmeh                              │
+│     .:::.=:=%@%#+-++-+#%@@+:+.:::.    🐘 @khalidabuhakmeh@mastodon.social                        │
+│      ..::. .:%.=-+**+-=.%.  .::..     ▶  youtube.com/@khalidabuhakmeh                            │
+│        ..:. .:.@@*++*@@.   .:..                                                                  │
+│          ...   :#@##@#-   ...         Tip: your AI agent can search my blog. This package ships  │
+│          .  +*-  .::...=%*  .         a `local-khalid` agent skill.                              │
 │             =###+====*@@@*                                                                       │
 │                                                                                                  │
 ╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
