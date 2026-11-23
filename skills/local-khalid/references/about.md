@@ -14,5 +14,5 @@ Source: khalidabuhakmeh.com/about. Only for "who is Khalid?" questions. Keep it 
 - Blog: https://khalidabuhakmeh.com
 - GitHub: https://github.com/khalidabuhakmeh
 - Mastodon: https://mastodon.social/@khalidabuhakmeh
-- YouTube: https://www.youtube.com/@khalidabuhakmeh
+- YouTube: https://www.youtube.com/@khalid_abuhakmeh
 - Buy Me a Coffee: https://buymeacoffee.com/khalidabuhakmeh

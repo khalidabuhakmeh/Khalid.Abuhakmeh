@@ -77,7 +77,7 @@ public static class Khalid
             LinkRow("\U0001F310", "web:", Link(Website, "khalidabuhakmeh.com")),
             LinkRow("\U0001F419", "gh:", Link("https://github.com/khalidabuhakmeh", "github.com/khalidabuhakmeh")),
             LinkRow("\U0001F418", "mastodon:", Link("https://mastodon.social/@khalidabuhakmeh", "@khalidabuhakmeh@mastodon.social")),
-            LinkRow("\u25B6 ", "yt:", Link("https://www.youtube.com/@khalidabuhakmeh", "youtube.com/@khalidabuhakmeh")),
+            LinkRow("\u25B6 ", "yt:", Link("https://www.youtube.com/@khalid_abuhakmeh", "youtube.com/@khalid_abuhakmeh")),
             new Text(""),
             new Markup(C(Pink, "Tip: your AI agent can search my blog. This package ships a "
                 + Markup.Escape("`local-khalid`") + " agent skill.")),

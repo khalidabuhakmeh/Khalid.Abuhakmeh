@@ -11,7 +11,7 @@
 |    :::::.  :#***#%@@%#***@=  .:::::   web: khalidabuhakmeh.com                                   |
 |    ::::..: ++==-=*%@%+-+*#% ::.::::   gh: github.com/khalidabuhakmeh                             |
 |    .:::.+*:#%@@%@#%@@@%@@@@-@#.:::.   mastodon: @khalidabuhakmeh@mastodon.social                 |
-|    .:::.:#:#@@@@%%@@@%@@@@@-@-.:::.   yt: youtube.com/@khalidabuhakmeh                           |
+|    .:::.:#:#@@@@%%@@@%@@@@@-@-.:::.   yt: youtube.com/@khalid_abuhakmeh                          |
 |     .:::.=:=%@%#+-++-+#%@@+:+.:::.                                                               |
 |      ..::. .:%.=-+**+-=.%.  .::..     Tip: your AI agent can search my blog. This package ships  |
 |        ..:. .:.@@*++*@@.   .:..       a `local-khalid` agent skill.                              |

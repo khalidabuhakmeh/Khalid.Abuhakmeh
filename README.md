@@ -69,7 +69,7 @@ Monochrome output at 100 columns (the real thing is crimson, white, and pink on 
 │    .:::.+*:#%@@%@#%@@@%@@@@-@#.:::.   🌐 khalidabuhakmeh.com                                     │
 │    .:::.:#:#@@@@%%@@@%@@@@@-@-.:::.   🐙 github.com/khalidabuhakmeh                              │
 │     .:::.=:=%@%#+-++-+#%@@+:+.:::.    🐘 @khalidabuhakmeh@mastodon.social                        │
-│      ..::. .:%.=-+**+-=.%.  .::..     ▶  youtube.com/@khalidabuhakmeh                            │
+│      ..::. .:%.=-+**+-=.%.  .::..     ▶  youtube.com/@khalid_abuhakmeh                           │
 │        ..:. .:.@@*++*@@.   .:..                                                                  │
 │          ...   :#@##@#-   ...         Tip: your AI agent can search my blog. This package ships  │
 │          .  +*-  .::...=%*  .         a `local-khalid` agent skill.                              │
